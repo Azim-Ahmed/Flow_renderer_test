@@ -18,6 +18,8 @@ const Layout = ({
   jsonInput,
   setJsonInput,
   convert,
+  title,
+  noNeed,
 }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -33,42 +35,48 @@ const Layout = ({
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Flow-renderer-test
+            {noNeed ? title : "Flow-renderer-test"}
           </Typography>
-          <Box mr="8px">
-            <Tooltip
-              title={`Download as an Image/png`}
-              placement="bottom"
-              arrow
-            >
-              <Button
-                variant="outlined"
-                onClick={() =>
-                  downloadJSON.length === 0
-                    ? alert("you have no nodes to download")
-                    : saveCanvas(flowImageDownloadRef)
-                }
-                color="inherit"
-              >
-                <FileDownloadIcon />
-              </Button>
-            </Tooltip>
-          </Box>
-          <Box mr="8px">
-            <Tooltip title={`Download as json`} placement="bottom" arrow>
-              <Button
-                variant="outlined"
-                onClick={() =>
-                  downloadJSON.length === 0
-                    ? alert("you have no nodes to download JSON")
-                    : toJSON(downloadJSON)
-                }
-                color="inherit"
-              >
-                <DataObjectIcon />
-              </Button>
-            </Tooltip>
-          </Box>
+          {noNeed ? (
+            ""
+          ) : (
+            <Box>
+              <Box mr="8px">
+                <Tooltip
+                  title={`Download as an Image/png`}
+                  placement="bottom"
+                  arrow
+                >
+                  <Button
+                    variant="outlined"
+                    onClick={() =>
+                      downloadJSON.length === 0
+                        ? alert("you have no nodes to download")
+                        : saveCanvas(flowImageDownloadRef)
+                    }
+                    color="inherit"
+                  >
+                    <FileDownloadIcon />
+                  </Button>
+                </Tooltip>
+              </Box>
+              <Box mr="8px">
+                <Tooltip title={`Download as json`} placement="bottom" arrow>
+                  <Button
+                    variant="outlined"
+                    onClick={() =>
+                      downloadJSON.length === 0
+                        ? alert("you have no nodes to download JSON")
+                        : toJSON(downloadJSON)
+                    }
+                    color="inherit"
+                  >
+                    <DataObjectIcon />
+                  </Button>
+                </Tooltip>
+              </Box>
+            </Box>
+          )}
         </Toolbar>
       </AppBar>
       {children}
