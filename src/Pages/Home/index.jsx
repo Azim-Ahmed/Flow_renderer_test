@@ -13,6 +13,7 @@ import { format } from "date-fns";
 const Home = (props) => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [open, setOpen] = useState(false);
+  const [updateopen, setUpdateOpen] = useState(false);
   const [clockWithDetails, setClockWithDetails] = useState([]);
   const [clockDetails, setclockDetails] = useState({
     name: "",
@@ -21,6 +22,7 @@ const Home = (props) => {
     events: [],
     timeDifference: "",
   });
+  const [clockUpdateDetails, setclockUpdateDetails] = useState({});
   const handleSetTime = (e) => {
     return setCurrentTime(e.target.value);
   };
@@ -29,6 +31,9 @@ const Home = (props) => {
   };
   const handleModalClose = () => {
     setOpen(false);
+  };
+  const handleUpdateModalClose = () => {
+    setUpdateOpen(false);
   };
   const handleSetCreatedTimeZone = (e) => {
     const newUserInfo = { ...clockDetails };
@@ -48,6 +53,43 @@ const Home = (props) => {
       id: "",
     });
     handleModalClose();
+  };
+  const updateCurrentTimeZone = (item) => {
+    setUpdateOpen(true);
+    setclockUpdateDetails(item);
+  };
+  const renderUpdateModal = () => {
+    return (
+      <TransitionsModal open={updateopen} handleClose={handleUpdateModalClose}>
+        {console.log(clockUpdateDetails)}
+        <form onSubmit={handleSubmit}>
+          <TextField
+            fullWidth
+            name="name"
+            value={clockUpdateDetails?.name}
+            onChange={handleSetCreatedTimeZone}
+            type="text"
+          />
+          <TextField
+            fullWidth
+            name="timeZone"
+            value={clockUpdateDetails?.timeZone}
+            onChange={handleSetCreatedTimeZone}
+            type="datetime-local"
+          />
+          <TextField
+            fullWidth
+            name="event"
+            value={currentTime}
+            onChange={handleSetCreatedTimeZone}
+            type="datetime-local"
+          />
+          <Button variant="contained" color="primary" type="submit">
+            Submit
+          </Button>
+        </form>
+      </TransitionsModal>
+    );
   };
 
   return (
@@ -71,6 +113,7 @@ const Home = (props) => {
         <Button variant="contained" color="info" onClick={handleCreateTimeZone}>
           Create your timeZone
         </Button>
+        {updateopen && renderUpdateModal()}
         <TransitionsModal open={open} handleClose={handleModalClose}>
           <form onSubmit={handleSubmit}>
             <TextField
@@ -103,13 +146,33 @@ const Home = (props) => {
       <Box>
         {clockWithDetails &&
           clockWithDetails.map((item) => (
-            <Box key={item?.id}>
+            <Box
+              style={{ display: "flex", justifyContent: "space-around" }}
+              key={item?.id}
+            >
               <h1>{item?.name}</h1>
               {format(
                 new Date(item?.timeZone),
                 "MMMM dd, yyyy, hh:mm:ss aaaaa'm'"
               )}
-              <h1>{item?.name}</h1>
+              <Button
+                variant="contained"
+                onClick={() => updateCurrentTimeZone(item)}
+                color="primary"
+              >
+                Edit
+              </Button>
+              <Button
+                onClick={() =>
+                  setClockWithDetails(
+                    clockWithDetails.filter((items) => items?.id !== item?.id)
+                  )
+                }
+                variant="contained"
+                color="primary"
+              >
+                Delete
+              </Button>
             </Box>
           ))}
       </Box>
