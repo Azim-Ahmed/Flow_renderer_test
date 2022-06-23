@@ -1,16 +1,19 @@
 import React from "react";
-import ReactMapboxGl, { GeoJSONLayer } from "react-mapbox-gl";
+import ReactMapboxGl, { GeoJSONLayer, Layer, Feature } from "react-mapbox-gl";
 import * as turf from "@turf/turf";
 import geojsonStyles from "./geojsonStyles";
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { Box, Grid } from '@mui/material';
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { styled, alpha } from '@mui/material/styles';
-// import EditIcon from '@mui/icons-material/Edit';
-// import Divider from '@mui/material/Divider';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import Divider from '@mui/material/Divider';
+import Paper from '@mui/material/Paper';
+import MenuList from '@mui/material/MenuList';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import Cloud from '@mui/icons-material/Cloud';
 import Layout from '../components/Layout';
 import { useEffect } from 'react';
 import axios from '../App/api';
@@ -22,23 +25,38 @@ const Map = ReactMapboxGl({
 });
 
 const NewMap = () => {
-    const onDragStart = (features) => {
-        // console.log(features);
-    };
-    const [initCountry, setInitCountry] = useState("Berlin")
-    const [countryData, setcountryData] = useState([])
-    const centerPoint = [-73.975547, 40.691785];
+
+    const [initCountry, setInitCountry] = useState("")
+    const [countryData, setcountryData] = useState({})
+    const [userLocation, setUserLocation] = useState({
+        latitude: null,
+        longitude: null,
+    });
     const radius = 0.1;
     const options = {
         steps: 50,
-        units: "miles",
+        units: "kilometers",
         properties: {
             text: "GeoLocation"
         }
     };
-    const firstCircle = turf.circle(countryData?.latlng, radius, options);
-    const secondCircle = turf.circle(countryData?.latlng, radius * 2, options);
-    const thirdCircle = turf.circle(countryData?.latlng, radius * 4, options);
+    useEffect(() => {
+        if (window.navigator.geolocation) {
+            window.navigator.geolocation.getCurrentPosition(
+                (cords) => {
+                    console.log(cords);
+                    setUserLocation({
+                        latitude: cords.coords.latitude,
+                        longitude: cords.coords.longitude,
+                    });
+                },
+                (err) => {
+                    console.log("err", err);
+                }
+            );
+        }
+    }, [initCountry]);
+
     const StyledMenu = styled((props) => (
         <Menu
             elevation={0}
@@ -88,63 +106,72 @@ const NewMap = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
-    const getData = async () => {
-        const dataaa = await axios.get(`/${initCountry}`)
-        return dataaa;
-    }
-    useEffect(() => {
-        getData().then(res => setcountryData(res.data[0]))
-    }, [initCountry])
-    console.log({ countryData })
+    useEffect(() => async () => {
+        try {
+            if (initCountry) {
+                const res = await axios.get(`/${initCountry}`)
+                console.log({ res })
+                setUserLocation({
+                    latitude: res.data[0].latlng[0],
+                    longitude: res.data[0].latlng[1],
+                });
+                setInitCountry("")
+            }
+            // setcountryData(res.data[0])
+        }
+        catch (error) {
+            console.log({ error })
+        }
+    }, [initCountry, userLocation])
+    // console.log({ countryData })
+    const layoutLayer = { 'icon-image': 'londonCycle' };
+    const locationData = {
+        name: "azim",
+        coordinates: [userLocation.latitude, userLocation.longitude],
+    };
+
+    // Create an image for the Layer
+    const image = new Image();
+    image.src = 'data:image/svg+xml;charset=utf-8;base64,' + btoa("svg");
+    const images = ['londonCycle', image];
+
+    const firstCircle = turf.circle([userLocation.longitude, userLocation.latitude], radius, options);
     const renderCountries = () => {
         return (
             <Box mt="20px" textAlign="center">
-                <Button
-                    id="demo-customized-button"
-                    aria-controls={open ? 'demo-customized-menu' : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? 'true' : undefined}
-                    variant="contained"
-                    disableElevation
-                    onClick={handleClick}
-                    endIcon={<KeyboardArrowDownIcon />}
-                >
-                    Select Country
-                </Button>
-                <StyledMenu
-                    id="demo-customized-menu"
-                    MenuListProps={{
-                        'aria-labelledby': 'demo-customized-button',
-                    }}
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={handleClose}
-                >
-                    <MenuItem
-                        onClick={() => {
-                            setInitCountry("Berlin")
-                            handleClose()
-                        }}
-                        disableRipple>
-                        Berlin
-                    </MenuItem>
-                    <MenuItem
-                        onClick={() => {
-                            setInitCountry("Paris")
-                            handleClose()
-                        }}
-                        disableRipple>
-                        Paris
-                    </MenuItem>
-                    <MenuItem
-                        onClick={() => {
-                            setInitCountry("Paris")
-                            handleClose()
-                        }}
-                        disableRipple>
-                        Brussels
-                    </MenuItem>
-                </StyledMenu>
+
+                <Paper sx={{ width: 320, maxWidth: '100%' }}>
+                    <MenuList>
+                        <MenuItem
+                            onClick={() => {
+                                setInitCountry("Berlin")
+                            }}
+                            disableRipple>
+                            Berlin
+                        </MenuItem>
+                        <MenuItem
+                            onClick={() => {
+                                setInitCountry("Paris")
+                            }}
+                            disableRipple>
+                            Paris
+                        </MenuItem>
+                        <MenuItem
+                            onClick={() => {
+                                setInitCountry("Brussels")
+                            }}
+                            disableRipple>
+                            Brussels
+                        </MenuItem>
+                        <Divider />
+                        <MenuItem>
+                            <ListItemIcon>
+                                <Cloud fontSize="small" />
+                            </ListItemIcon>
+                            <ListItemText>Web Clipboard</ListItemText>
+                        </MenuItem>
+                    </MenuList>
+                </Paper>
             </Box>
         )
     }
@@ -157,18 +184,20 @@ const NewMap = () => {
                 </Grid>
                 <Grid item sm={8} md={8} >
                     <Map
-                        onDragStart={onDragStart}
                         style="mapbox://styles/mapbox/streets-v9" // eslint-disable-line
                         containerStyle={{
                             height: `calc(100vh - 75px)`,
                             width: `calc(100vw - 280px)`
                         }}
                         zoom={[14]}
-                        center={countryData?.latlng}
+                        center={[userLocation.longitude, userLocation.latitude]}
                     >
                         <GeoJSONLayer {...geojsonStyles} data={firstCircle} />
-                        <GeoJSONLayer {...geojsonStyles} data={secondCircle} />
-                        <GeoJSONLayer {...geojsonStyles} data={thirdCircle} />
+                        <Layer type="symbol" id="marker" layout={layoutLayer}>
+                            <Feature
+                                coordinates={[userLocation.longitude, userLocation.latitude]}
+                            />
+                        </Layer>
                     </Map>
                 </Grid>
 
