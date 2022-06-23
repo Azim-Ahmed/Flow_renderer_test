@@ -3328,13 +3328,6 @@
   resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
   integrity sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==
 
-"@types/mapbox-gl@^2.6.0":
-  version "2.7.3"
-  resolved "https://registry.yarnpkg.com/@types/mapbox-gl/-/mapbox-gl-2.7.3.tgz#d75049251f1cb5f5a5453d6c20ffb9d2de6cbd75"
-  integrity sha512-XdveeJptNNZw7ZoeiAJ2/dupNtWaV6qpBG/SOFEpQNQAc+oiO6qUznX85n+W1XbLeD8SVRVfVORKuR+I4CHDZw==
-  dependencies:
-    "@types/geojson" "*"
-
 "@types/mime@^1":
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/@types/mime/-/mime-1.3.2.tgz#93e25bf9ee75fe0fd80b594bc4feb0e862111b5a"
@@ -9069,13 +9062,6 @@ react-is@^18.0.0:
   version "18.1.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.1.0.tgz#61aaed3096d30eacf2a2127118b5b41387d32a67"
   integrity sha512-Fl7FuabXsJnV5Q1qIOQwx/sagGF18kogb4gpfcG4gjLBWO0WDiiz1ko/ExayuxE7InyQkBLkxRFG5oxY6Uu3Kg==
-
-react-map-gl@^7.0.16:
-  version "7.0.16"
-  resolved "https://registry.yarnpkg.com/react-map-gl/-/react-map-gl-7.0.16.tgz#9f558fc11790e0ea44db8f5a582171fad2355ff8"
-  integrity sha512-H8dTm4a09D+eI6PSl/hXMTA+vfoPXnfOKjQRxqzY4q1tSt/r3jqTRrb0CwVTi2sAvUJOrDsNCMQCKiEFYQ89eg==
-  dependencies:
-    "@types/mapbox-gl" "^2.6.0"
 
 react-mapbox-gl@^5.1.1:
   version "5.1.1"

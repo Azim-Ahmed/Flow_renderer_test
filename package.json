@@ -20,7 +20,6 @@
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-flow-renderer": "^10.2.2",
-    "react-map-gl": "^7.0.16",
     "react-mapbox-gl": "^5.1.1",
     "react-resizable": "^3.0.4",
     "react-router-dom": "6",
