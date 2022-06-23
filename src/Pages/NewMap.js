@@ -12,6 +12,9 @@ import { styled, alpha } from '@mui/material/styles';
 // import Divider from '@mui/material/Divider';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Layout from '../components/Layout';
+import { useEffect } from 'react';
+import axios from '../App/api';
+import { useState } from 'react';
 
 const Map = ReactMapboxGl({
     accessToken:
@@ -20,8 +23,10 @@ const Map = ReactMapboxGl({
 
 const NewMap = () => {
     const onDragStart = (features) => {
-        console.log(features);
+        // console.log(features);
     };
+    const [initCountry, setInitCountry] = useState("Berlin")
+    const [countryData, setcountryData] = useState([])
     const centerPoint = [-73.975547, 40.691785];
     const radius = 0.1;
     const options = {
@@ -31,9 +36,9 @@ const NewMap = () => {
             text: "GeoLocation"
         }
     };
-    const firstCircle = turf.circle(centerPoint, radius, options);
-    const secondCircle = turf.circle(centerPoint, radius * 2, options);
-    const thirdCircle = turf.circle(centerPoint, radius * 4, options);
+    const firstCircle = turf.circle(countryData?.latlng, radius, options);
+    const secondCircle = turf.circle(countryData?.latlng, radius * 2, options);
+    const thirdCircle = turf.circle(countryData?.latlng, radius * 4, options);
     const StyledMenu = styled((props) => (
         <Menu
             elevation={0}
@@ -49,6 +54,7 @@ const NewMap = () => {
         />
     ))(({ theme }) => ({
         '& .MuiPaper-root': {
+
             borderRadius: 6,
             marginTop: theme.spacing(1),
             minWidth: 180,
@@ -82,6 +88,14 @@ const NewMap = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+    const getData = async () => {
+        const dataaa = await axios.get(`/${initCountry}`)
+        return dataaa;
+    }
+    useEffect(() => {
+        getData().then(res => setcountryData(res.data[0]))
+    }, [initCountry])
+    console.log({ countryData })
     const renderCountries = () => {
         return (
             <Box mt="20px" textAlign="center">
@@ -106,22 +120,38 @@ const NewMap = () => {
                     open={open}
                     onClose={handleClose}
                 >
-                    <MenuItem onClick={handleClose} disableRipple>
+                    <MenuItem
+                        onClick={() => {
+                            setInitCountry("Berlin")
+                            handleClose()
+                        }}
+                        disableRipple>
                         Berlin
                     </MenuItem>
-                    <MenuItem onClick={handleClose} disableRipple>
+                    <MenuItem
+                        onClick={() => {
+                            setInitCountry("Paris")
+                            handleClose()
+                        }}
+                        disableRipple>
                         Paris
                     </MenuItem>
-                    <MenuItem onClick={handleClose} disableRipple>
+                    <MenuItem
+                        onClick={() => {
+                            setInitCountry("Paris")
+                            handleClose()
+                        }}
+                        disableRipple>
                         Brussels
                     </MenuItem>
                 </StyledMenu>
             </Box>
         )
     }
+    if (!countryData) return null;
     return (
         <Layout title="Map-box" noNeed>
-            <Grid container fluid>
+            <Grid container fluid="true">
                 <Grid item sm={2} md={2} >
                     {renderCountries()}
                 </Grid>
@@ -134,7 +164,7 @@ const NewMap = () => {
                             width: `calc(100vw - 280px)`
                         }}
                         zoom={[14]}
-                        center={[-73.975547, 40.691785]}
+                        center={countryData?.latlng}
                     >
                         <GeoJSONLayer {...geojsonStyles} data={firstCircle} />
                         <GeoJSONLayer {...geojsonStyles} data={secondCircle} />
