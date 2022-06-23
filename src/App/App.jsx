@@ -5,7 +5,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import Home from "../Pages/Home";
 import theme from "../assets/Theme";
 import MapBox from "../Pages/Mapbox";
-import Map from "../Pages/DemoMap";
 // import AliveMap from "../Pages/AliveMap";
 import NewMap from "../Pages/NewMap";
 
@@ -17,8 +16,8 @@ const App = () => {
           <Routes>
             <Route exact path="/flowCanvas" element={<FlowCanvas />} />
             <Route exact path="/mapbox" element={<MapBox />} />
-            <Route exact path="/" element={<Map />} />
             <Route exact path="/NewMap" element={<NewMap />} />
+            <Route exact path="/" element={<NewMap />} />
           </Routes>
         </BrowserRouter>
       </ReactFlowProvider>
