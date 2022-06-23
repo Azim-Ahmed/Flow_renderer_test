@@ -22,7 +22,7 @@ const Layout = ({
   noNeed,
 }) => {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box>
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -30,7 +30,6 @@ const Layout = ({
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 2 }}
           >
             <MenuIcon />
           </IconButton>
@@ -79,7 +78,7 @@ const Layout = ({
           )}
         </Toolbar>
       </AppBar>
-      {children}
+      <Box>{children}</Box>
     </Box>
   );
 };

@@ -43,6 +43,7 @@ const Map = (children) => {
         }}
         flyToOptions={flyToOptions}
         fitBounds={GERMANY_BOUNDS}
+        center={[-73.975547, 40.691785]}
         // containerStyle={{ width: "100%", height: "100%" }}
       >
         {/* {children} */}

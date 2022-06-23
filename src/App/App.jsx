@@ -17,7 +17,7 @@ const App = () => {
           <Routes>
             <Route exact path="/flowCanvas" element={<FlowCanvas />} />
             <Route exact path="/mapbox" element={<MapBox />} />
-            {/* <Route exact path="/" element={<AliveMap />} /> */}
+            <Route exact path="/" element={<Map />} />
             <Route exact path="/NewMap" element={<NewMap />} />
           </Routes>
         </BrowserRouter>
