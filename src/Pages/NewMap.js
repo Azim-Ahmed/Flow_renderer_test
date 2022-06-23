@@ -7,9 +7,6 @@ import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
 import Paper from '@mui/material/Paper';
 import MenuList from '@mui/material/MenuList';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Cloud from '@mui/icons-material/Cloud';
 import Layout from '../components/Layout';
 import styled from "@emotion/styled"
 import axios from '../App/api';
@@ -83,6 +80,7 @@ const NewMap = () => {
                             disableRipple>
                             Berlin
                         </MenuItem>
+                        <Divider />
                         <MenuItem
                             onClick={() => {
                                 setInitCountry("Paris")
@@ -90,6 +88,7 @@ const NewMap = () => {
                             disableRipple>
                             Paris
                         </MenuItem>
+                        <Divider />
                         <MenuItem
                             onClick={() => {
                                 setInitCountry("Brussels")
@@ -97,13 +96,7 @@ const NewMap = () => {
                             disableRipple>
                             Brussels
                         </MenuItem>
-                        <Divider />
-                        <MenuItem>
-                            <ListItemIcon>
-                                <Cloud fontSize="small" />
-                            </ListItemIcon>
-                            <ListItemText>Web Clipboard</ListItemText>
-                        </MenuItem>
+
                     </MenuList>
                 </Paper>
             </Box>
@@ -123,7 +116,7 @@ const NewMap = () => {
                             width: `calc(100vw - 280px)`
                         }}
                         onClick={() => setOpenPopUpForColor(false)}
-                        zoom={[14]}
+                        zoom={[8]}
                         center={[userLocation.longitude, userLocation.latitude]}
                     >
                         {

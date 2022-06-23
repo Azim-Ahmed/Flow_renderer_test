@@ -14,10 +14,10 @@ const App = () => {
       <ReactFlowProvider>
         <BrowserRouter>
           <Routes>
+            <Route exact path="/" element={<FlowCanvas />} />
             <Route exact path="/flowCanvas" element={<FlowCanvas />} />
             <Route exact path="/mapbox" element={<MapBox />} />
             <Route exact path="/NewMap" element={<NewMap />} />
-            <Route exact path="/" element={<NewMap />} />
           </Routes>
         </BrowserRouter>
       </ReactFlowProvider>
