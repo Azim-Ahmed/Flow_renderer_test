@@ -26,17 +26,10 @@ import ConnectionLine from "../components/FlowComponents/CustomEdge/ConnectionLi
 import NodeA from "../components/FlowComponents/Nodes/NodeA";
 import NodeB from "../components/FlowComponents/Nodes/NodeB";
 import { edgeArrowId } from "../helpers";
+import { flowInitial } from "../assets/FlowData/Data";
 const FlowCanvas = () => {
   const reactFlowWrapper = useRef(null);
   const flowImageDownloadRef = useRef();
-  const [nodes, setNodes, onNodesChange] = useNodesState([]);
-  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
-  const [reactFlowInstance, setReactFlowInstance] = useState(null);
-  const [openEditor, setOpenEditor] = useState(false);
-  const [nodeName, setNodeName] = useState("NULL");
-  const [nodeBg, setNodeBg] = useState("NULL");
-  const [group, setGroup] = useState("");
-
   const nodeTypes = useMemo(
     () => ({
       nodeA: NodeA,
@@ -50,6 +43,19 @@ const FlowCanvas = () => {
     }),
     []
   );
+  const getNodes = flowInitial.filter(
+    (item) => item.type === "nodeA" || item.type === "nodeB"
+  );
+  const getEdges = flowInitial.filter((item) => item.type === "custom");
+  console.log({ getNodes, flowInitial });
+  const [nodes, setNodes, onNodesChange] = useNodesState(getNodes);
+  const [edges, setEdges, onEdgesChange] = useEdgesState(getEdges);
+  const [reactFlowInstance, setReactFlowInstance] = useState(null);
+  const [openEditor, setOpenEditor] = useState(false);
+  const [nodeName, setNodeName] = useState("NULL");
+  const [nodeBg, setNodeBg] = useState("NULL");
+  const [group, setGroup] = useState("");
+
   const [sizeX, setSizeX] = useState(0);
   const [sizeY, setSizeY] = useState(0);
   const [type, setType] = useState();
