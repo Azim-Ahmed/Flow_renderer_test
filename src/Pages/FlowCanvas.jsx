@@ -257,11 +257,11 @@ const FlowCanvas = () => {
     >
       <div className="bg-indigo-100 py-2">
         <div className>
-          <Grid container spacing={2}>
-            <Grid item xs={2}>
+          <Grid container>
+            <Grid item xs={2} md={2}>
               <Sidebar />
             </Grid>
-            <Grid ref={flowImageDownloadRef} item xs={10}>
+            <Grid ref={flowImageDownloadRef} item xs={10} md={10}>
               <div
                 className=" bg-indigo-100 rounded-md my-1 mx-2 border-2 border-indigo-400"
                 ref={reactFlowWrapper}

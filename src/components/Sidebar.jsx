@@ -1,6 +1,6 @@
-import "../index";
-import { useState } from "react";
-import FilterItems from "./FlowComponents/FilterItems";
+// import "../index";
+// import { useState } from "react";
+// import FilterItems from "./FlowComponents/FilterItems";
 import { Box } from "@mui/system";
 import { Divider, Tooltip } from "@mui/material";
 import { flowData } from "../assets/FlowData";
@@ -12,18 +12,18 @@ const Sidebar = () => {
     event.dataTransfer.setData("application/reactflow/color", color);
     event.dataTransfer.effectAllowed = "move";
   };
-  const menuItems = [...new Set(flowData.map((val) => val.type))];
-  const [item, setItem] = useState(flowData);
-  const filterItem = (curcat) => {
-    const newItem = flowData.filter((newVal) => {
-      return newVal.type === curcat;
-    });
-    setItem(newItem);
-  };
+  // const menuItems = [...new Set(flowData.map((val) => val.type))];
+  // const [item, setItem] = useState(flowData);
+  // const filterItem = (curcat) => {
+  //   const newItem = flowData.filter((newVal) => {
+  //     return newVal.type === curcat;
+  //   });
+  //   setItem(newItem);
+  // };
 
   return (
     <Box className="static">
-      <Box textAlign={`center`} margin="8px 2px">
+      {/* <Box textAlign={`center`} margin="8px 2px">
         <h5>Click to filter your node types</h5>
         <Divider />
       </Box>
@@ -33,7 +33,7 @@ const Sidebar = () => {
         setItem={setItem}
         menuItems={menuItems}
       />
-      <Divider />
+      <Divider /> */}
       <Box
         mt={2}
         display="flex"
@@ -41,7 +41,7 @@ const Sidebar = () => {
         flexDirection="column"
         alignItems={`center`}
       >
-        {item.map((object, key) => (
+        {flowData.map((object, key) => (
           <Tooltip key={key} title={object?.title} placement="right" arrow>
             <Box
               draggable

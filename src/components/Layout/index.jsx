@@ -60,7 +60,7 @@ const Layout = ({
                   </Button>
                 </Tooltip>
               </Box>
-              <Box mr="8px">
+              {/* <Box mr="8px">
                 <Tooltip title={`Go to mapbox`} placement="bottom" arrow>
                   <NavLink
                     style={{
@@ -73,7 +73,7 @@ const Layout = ({
                     MapBox
                   </NavLink>
                 </Tooltip>
-              </Box>
+              </Box> */}
               <Box mr="8px">
                 <Tooltip title={`Download as json`} placement="bottom" arrow>
                   <Button
