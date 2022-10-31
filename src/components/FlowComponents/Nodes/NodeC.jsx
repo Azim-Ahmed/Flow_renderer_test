@@ -8,7 +8,7 @@ import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 
 import { aws } from "../../../assets";
 import { Button } from "@mui/material";
-const NodeA = ({ data }) => {
+const NodeC = ({ data }) => {
   const classes = useStyles();
   return (
     <div className={classes.customNodeWrapper}>
@@ -30,7 +30,7 @@ const NodeA = ({ data }) => {
           style={{ margin: "-1px -19px", padding: "0 0", zIndex: "10" }}
           size="small"
         >
-          <CancelRoundedIcon style={{ color: "#807EC9", fill: "#ccc" }} />
+          <CancelRoundedIcon style={{ color: "#D31C76", fill: "#ccc" }} />
         </Button>
       </Box>
       <Box
@@ -54,9 +54,9 @@ const NodeA = ({ data }) => {
           justifyContent={"center"}
           alignItems="center"
           minHeight={"40px"}
-          style={{ background: "#807EC9" }}
+          style={{ background: "#0083E5" }}
         >
-          <p style={{ color: "white", textAlign: "center" }}>Trigger</p>
+          <p style={{ color: "white", textAlign: "center" }}>Condtion</p>
         </Box>
         <Box style={{ background: "rgba(223, 224, 255, 1)" }}>
           <Box
@@ -67,7 +67,7 @@ const NodeA = ({ data }) => {
           >
             <AccountTreeIcon
               style={{
-                fill: "#807EC9",
+                fill: "#0083E5",
               }}
             />
             <p
@@ -114,7 +114,7 @@ const NodeA = ({ data }) => {
   );
 };
 
-export default NodeA;
+export default NodeC;
 
 const useStyles = makeStyles((theme) => ({
   customNodeWrapper: {
@@ -126,8 +126,8 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
   },
   leftHandleStyle: {
-    background: "#807EC9",
-    border: "1px solid #807EC9",
+    background: "#0083E5",
+    border: "1px solid #0083E5",
     padding: "10px",
     left: -12,
     zIndex: "-1",
@@ -136,8 +136,8 @@ const useStyles = makeStyles((theme) => ({
   rightHandleStyle: {
     top: 60,
     right: -12,
-    border: "1px solid #807EC9",
-    background: "#807EC9",
+    border: "1px solid #0083E5",
+    background: "#0083E5",
     padding: "10px",
     zIndex: "-1",
   },

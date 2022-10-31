@@ -25,6 +25,7 @@ import CustomEdge from "../components/FlowComponents/CustomEdge";
 import ConnectionLine from "../components/FlowComponents/CustomEdge/ConnectionLine";
 import NodeA from "../components/FlowComponents/Nodes/NodeA";
 import NodeB from "../components/FlowComponents/Nodes/NodeB";
+import NodeC from "../components/FlowComponents/Nodes/NodeC";
 import { edgeArrowId } from "../helpers";
 import { flowInitial } from "../assets/FlowData/Data";
 const FlowCanvas = () => {
@@ -34,6 +35,7 @@ const FlowCanvas = () => {
     () => ({
       nodeA: NodeA,
       nodeB: NodeB,
+      nodeC: NodeC,
     }),
     []
   );
@@ -44,7 +46,8 @@ const FlowCanvas = () => {
     []
   );
   const getNodes = flowInitial.filter(
-    (item) => item.type === "nodeA" || item.type === "nodeB"
+    (item) =>
+      item.type === "nodeA" || item.type === "nodeB" || item.type === "nodeC"
   );
   const getEdges = flowInitial.filter((item) => item.type === "custom");
   console.log({ getNodes, flowInitial });
@@ -79,10 +82,10 @@ const FlowCanvas = () => {
     (params) => {
       const source = params?.source;
       const target = params.target;
-      const newNodeBLineEdge = source.split("_").includes("nodeB");
-      if (!params?.source || !params?.target || newNodeBLineEdge) {
-        return;
-      }
+      // const newNodeBLineEdge = source.split("_").includes("nodeB");
+      // if (!params?.source || !params?.target || newNodeBLineEdge) {
+      //   return;
+      // }
       const newEdgeId = edgeArrowId(source, target);
       setEdges((eds) =>
         addEdge(
@@ -213,6 +216,19 @@ const FlowCanvas = () => {
         };
         setNodes((nds) => nds.concat(newNode));
       }
+      if (type === "nodeC") {
+        newNode = {
+          id: `flow_azim_${type}_renderer_${uuidv4()}`,
+          type,
+          position,
+          data: { label: `${label}` },
+          style: {
+            borderRadius: 6,
+            borderColor: "#1111",
+          },
+        };
+        setNodes((nds) => nds.concat(newNode));
+      }
     },
     [reactFlowInstance, setNodes]
   );
@@ -226,7 +242,11 @@ const FlowCanvas = () => {
   const onPaneClick = (event) => setOpenEditor(false);
   const onEdgeUpdate = (oldEdge, newConnection) =>
     setEdges((els) => updateEdge(oldEdge, newConnection, els));
-  const graphStyles = { width: "100%", height: "650px", Background: "white" };
+  const graphStyles = {
+    width: "100%",
+    minHeight: `calc(100vh - 100px)`,
+    Background: "white",
+  };
   return (
     <Layout
       jsonInput={jsonInput}
@@ -273,7 +293,7 @@ const FlowCanvas = () => {
                   onNodeClick={onNodeClick}
                   style={graphStyles}
                 >
-                  <MiniMap />
+                  {/* <MiniMap /> */}
 
                   {openEditor && (
                     <div className="updatenode__controls ">
