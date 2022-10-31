@@ -11,7 +11,7 @@ import ReactFlow, {
   useEdgesState,
   Controls,
   Background,
-  MiniMap,
+  // MiniMap,
   updateEdge,
   MarkerType,
 } from "react-flow-renderer";
@@ -55,14 +55,14 @@ const FlowCanvas = () => {
   const [edges, setEdges, onEdgesChange] = useEdgesState(getEdges);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
   const [openEditor, setOpenEditor] = useState(false);
-  const [nodeName, setNodeName] = useState("Trigger");
+  const [nodeName, setNodeName] = useState("");
   const [nodeBg, setNodeBg] = useState("");
   // const [group, setGroup] = useState("");
 
   const [sizeX, setSizeX] = useState(0);
   const [sizeY, setSizeY] = useState(0);
   const [type, setType] = useState();
-  const [parent, setParent] = useState();
+  // const [parent, setParent] = useState();
   const [id, setID] = useState();
   const [jsonInput, setJsonInput] = useState("");
 
@@ -123,28 +123,28 @@ const FlowCanvas = () => {
     event.dataTransfer.dropEffect = "move";
   }, []);
 
-  useEffect(() => {
-    setNodes((nds) =>
-      nds.map((node) => {
-        let x = 0;
-        let y = 0;
-        if (node.id === parent) {
-          x = node.position.x;
-          y = node.position.y;
-          console.log("parent: " + node.id + " " + parent);
-          console.log("parent posx: " + x);
-          console.log("parent posy: " + y);
-        }
-        // else if (node.selected === true && node.type !== "group") {
-        //   node.parentNode = parent;
-        //   node.position.x = x;
-        //   node.position.y = y;
-        //   node.extent = "parent";
-        // }
-        return node;
-      })
-    );
-  }, [parent, setNodes]);
+  // useEffect(() => {
+  //   setNodes((nds) =>
+  //     nds.map((node) => {
+  //       let x = 0;
+  //       let y = 0;
+  //       // if (node.id === parent) {
+  //       //   x = node.position.x;
+  //       //   y = node.position.y;
+  //       //   console.log("parent: " + node.id + " " + parent);
+  //       //   console.log("parent posx: " + x);
+  //       //   console.log("parent posy: " + y);
+  //       // }
+  //       // else if (node.selected === true && node.type !== "group") {
+  //       //   node.parentNode = parent;
+  //       //   node.position.x = x;
+  //       //   node.position.y = y;
+  //       //   node.extent = "parent";
+  //       // }
+  //       return node;
+  //     })
+  //   );
+  // }, [parent, setNodes]);
 
   useEffect(() => {
     setNodes((nds) =>
@@ -314,6 +314,7 @@ const FlowCanvas = () => {
                             onChange={(evt) => setNodeName(evt.target.value)}
                             id="outlined-basic"
                             variant="outlined"
+                            color="secondary"
                           />
                           <div>
                             <div className="py-1">Info:</div>

@@ -5,10 +5,10 @@
     z-index: 4;
     font-size: 12px;
     border: 2px solid gray ;
-    background:rgb(193, 163, 163);
+    background:#BFDEFE;
     border-radius: 5px;
     padding: 15px;
-    color: white;
+    color: black;
     height: 485px;
   }
   .fieldtextcol{

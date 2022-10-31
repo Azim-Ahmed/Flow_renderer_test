@@ -5,11 +5,12 @@ import { Box } from "@mui/system";
 import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
-
+import { useState } from "react";
 import { aws } from "../../../assets";
 import { Button } from "@mui/material";
 const NodeC = ({ data }) => {
   const classes = useStyles();
+  const [state, setState] = useState(false);
   return (
     <div className={classes.customNodeWrapper}>
       <Handle
@@ -40,8 +41,12 @@ const NodeC = ({ data }) => {
         left={0}
         justifyContent={"space-around"}
       >
-        <Button style={{ margin: "-1px -16px", padding: "0 0" }} size="small">
-          <CheckCircleRoundedIcon style={{ fill: "#cccc" }} />
+        <Button
+          onClick={() => setState(!state)}
+          style={{ margin: "-1px -16px", padding: "0 0" }}
+          size="small"
+        >
+          <CheckCircleRoundedIcon style={{ fill: state ? "blue" : "#cccc" }} />
         </Button>
       </Box>
       {/* <Box display="flex" justifyContent={"space-around"}>

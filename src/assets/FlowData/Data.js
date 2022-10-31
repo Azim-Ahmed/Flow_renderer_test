@@ -269,11 +269,11 @@ export const flowInitial = [
         }
     },
     {
-        "source": "flow_azim_nodeA_renderer_797591da-0798-4a30-ad5b-57326383bada",
+        "source": "flow_azim_nodeC_renderer_4db066a8-1978-4c79-931a-bc8508f6a2c8",
         "sourceHandle": "a",
-        "target": "flow_azim_nodeB_renderer_715df108-f640-453d-bc86-67f071339620",
+        "target": "flow_azim_nodeB_renderer_be1c0986-4939-4f80-9785-51f126ff7b9f",
         "targetHandle": null,
-        "id": "flow_azim_nodeA_renderer_797591da-0798-4a30-ad5b-57326383bada>flow_azim_nodeB_renderer_715df108-f640-453d-bc86-67f071339620",
+        "id": "flow_azim_nodeC_renderer_4db066a8-1978-4c79-931a-bc8508f6a2c8>flow_azim_nodeB_renderer_be1c0986-4939-4f80-9785-51f126ff7b9f",
         "type": "custom",
         "animated": false,
         "data": {
@@ -291,11 +291,11 @@ export const flowInitial = [
         }
     },
     {
-        "source": "flow_azim_nodeC_renderer_4db066a8-1978-4c79-931a-bc8508f6a2c8",
+        "source": "flow_azim_nodeA_renderer_7d5fd019-09f6-44ed-9c52-e19629b22dd5",
         "sourceHandle": "a",
-        "target": "flow_azim_nodeB_renderer_be1c0986-4939-4f80-9785-51f126ff7b9f",
+        "target": "flow_azim_nodeC_renderer_5c20df41-67b7-4317-9f6e-860463760c92",
         "targetHandle": null,
-        "id": "flow_azim_nodeC_renderer_4db066a8-1978-4c79-931a-bc8508f6a2c8>flow_azim_nodeB_renderer_be1c0986-4939-4f80-9785-51f126ff7b9f",
+        "id": "flow_azim_nodeA_renderer_7d5fd019-09f6-44ed-9c52-e19629b22dd5>flow_azim_nodeC_renderer_5c20df41-67b7-4317-9f6e-860463760c92",
         "type": "custom",
         "animated": false,
         "data": {
@@ -324,10 +324,13 @@ export const flowInitial = [
         },
         "style": {
             "borderRadius": 6,
-            "borderColor": "#1111"
+            "borderColor": "#1111",
+            "width": null,
+            "height": null
         },
         "width": 350,
-        "height": 120
+        "height": 120,
+        "selected": false
     },
     {
         "id": "flow_azim_nodeB_renderer_08db8631-82bf-4049-878a-06095452866e",
@@ -498,11 +501,11 @@ export const flowInitial = [
         "dragging": false
     },
     {
-        "id": "flow_azim_nodeA_renderer_797591da-0798-4a30-ad5b-57326383bada",
+        "id": "flow_azim_nodeA_renderer_7d5fd019-09f6-44ed-9c52-e19629b22dd5",
         "type": "nodeA",
         "position": {
-            "x": 149.9513365165909,
-            "y": -56.168934798709984
+            "x": 63.93366858836248,
+            "y": -139.7262279623593
         },
         "data": {
             "label": "Trigger"
@@ -510,13 +513,12 @@ export const flowInitial = [
         "style": {
             "borderRadius": 6,
             "borderColor": "#1111",
-            "width": 0,
-            "height": 0,
-            "backgroundColor": ""
+            "width": null,
+            "height": null
         },
         "width": 350,
         "height": 120,
-        "selected": true,
+        "selected": false,
         "dragging": false
     }
 ]

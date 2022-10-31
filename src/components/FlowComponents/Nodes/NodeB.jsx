@@ -8,7 +8,10 @@ import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 
 import { aws } from "../../../assets";
 import { Button } from "@mui/material";
+import { useState } from "react";
 const NodeB = ({ data }) => {
+  const [state, setState] = useState(false);
+
   const classes = useStyles();
   return (
     <div className={classes.customNodeWrapper}>
@@ -40,8 +43,12 @@ const NodeB = ({ data }) => {
         left={0}
         justifyContent={"space-around"}
       >
-        <Button style={{ margin: "-1px -16px", padding: "0 0" }} size="small">
-          <CheckCircleRoundedIcon style={{ fill: "#cccc" }} />
+        <Button
+          onClick={() => setState(!state)}
+          style={{ margin: "-1px -16px", padding: "0 0" }}
+          size="small"
+        >
+          <CheckCircleRoundedIcon style={{ fill: state ? "green" : "#cccc" }} />
         </Button>
       </Box>
       {/* <Box display="flex" justifyContent={"space-around"}>
