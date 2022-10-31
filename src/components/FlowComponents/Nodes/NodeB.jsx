@@ -56,7 +56,7 @@ const NodeB = ({ data }) => {
           minHeight={"40px"}
           style={{ background: "#D31C76" }}
         >
-          <p style={{ color: "white", textAlign: "center" }}>Action</p>
+          <p style={{ color: "white", textAlign: "center" }}>{data.label}</p>
         </Box>
         <Box style={{ background: "rgba(223, 224, 255, 1)" }}>
           <Box

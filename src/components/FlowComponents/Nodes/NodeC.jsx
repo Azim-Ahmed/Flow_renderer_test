@@ -56,7 +56,7 @@ const NodeC = ({ data }) => {
           minHeight={"40px"}
           style={{ background: "#0083E5" }}
         >
-          <p style={{ color: "white", textAlign: "center" }}>Condtion</p>
+          <p style={{ color: "white", textAlign: "center" }}>{data.label}</p>
         </Box>
         <Box style={{ background: "rgba(223, 224, 255, 1)" }}>
           <Box

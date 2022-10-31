@@ -2,7 +2,7 @@
 // import { useState } from "react";
 // import FilterItems from "./FlowComponents/FilterItems";
 import { Box } from "@mui/system";
-import { Divider, Tooltip } from "@mui/material";
+import { Tooltip } from "@mui/material";
 import { flowData } from "../assets/FlowData";
 
 const Sidebar = () => {

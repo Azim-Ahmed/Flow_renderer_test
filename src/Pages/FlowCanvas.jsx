@@ -55,9 +55,9 @@ const FlowCanvas = () => {
   const [edges, setEdges, onEdgesChange] = useEdgesState(getEdges);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
   const [openEditor, setOpenEditor] = useState(false);
-  const [nodeName, setNodeName] = useState("NULL");
-  const [nodeBg, setNodeBg] = useState("NULL");
-  const [group, setGroup] = useState("");
+  const [nodeName, setNodeName] = useState("Trigger");
+  const [nodeBg, setNodeBg] = useState("");
+  // const [group, setGroup] = useState("");
 
   const [sizeX, setSizeX] = useState(0);
   const [sizeY, setSizeY] = useState(0);
@@ -97,9 +97,18 @@ const FlowCanvas = () => {
             data: {
               text: "connection line text",
             },
-            style: { stroke: "black" },
+            style: {
+              strokeWidth: 2,
+              stroke: "#FF0072",
+            },
+            // markerEnd: {
+            //   type: MarkerType.ArrowClosed,
+            // },
             markerEnd: {
               type: MarkerType.ArrowClosed,
+              width: 20,
+              height: 20,
+              color: "#FF0072",
             },
           },
           eds
@@ -125,12 +134,13 @@ const FlowCanvas = () => {
           console.log("parent: " + node.id + " " + parent);
           console.log("parent posx: " + x);
           console.log("parent posy: " + y);
-        } else if (node.selected === true && node.type !== "group") {
-          node.parentNode = parent;
-          node.position.x = x;
-          node.position.y = y;
-          node.extent = "parent";
         }
+        // else if (node.selected === true && node.type !== "group") {
+        //   node.parentNode = parent;
+        //   node.position.x = x;
+        //   node.position.y = y;
+        //   node.extent = "parent";
+        // }
         return node;
       })
     );
@@ -156,23 +166,23 @@ const FlowCanvas = () => {
     );
   }, [nodeName, nodeBg, sizeX, sizeY, setNodes]);
 
-  useEffect(() => {
-    setNodes((nds) =>
-      nds.map((node) => {
-        if (node.selected === true) {
-          console.log("selected found");
-          // when you update a simple type you can just update the value
-          node.type = "group";
+  // useEffect(() => {
+  //   setNodes((nds) =>
+  //     nds.map((node) => {
+  //       if (node.selected === true) {
+  //         console.log("selected found");
+  //         // when you update a simple type you can just update the value
+  //         node.type = "group";
 
-          setType(node.type);
+  //         setType(node.type);
 
-          setGroup("");
-        }
-        console.log("not selected");
-        return node;
-      })
-    );
-  }, [group, setNodes]);
+  //         setGroup("");
+  //       }
+  //       console.log("not selected");
+  //       return node;
+  //     })
+  //   );
+  // }, [group, setNodes]);
 
   const onDrop = useCallback(
     (event) => {
@@ -294,7 +304,6 @@ const FlowCanvas = () => {
                   style={graphStyles}
                 >
                   {/* <MiniMap /> */}
-
                   {openEditor && (
                     <div className="updatenode__controls ">
                       <div className="grid grid-cols-1 divide-y divide-black">
