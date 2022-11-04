@@ -4,3 +4,5 @@
 ### to run this application you just have to these in your computer ;
 
 ### node version : 14.17.0 , yarn version: 1.22.10
+
+#### https://deluxe-kangaroo-a130dd.netlify.app/
