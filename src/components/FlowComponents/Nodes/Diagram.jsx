@@ -26,9 +26,9 @@ function DiagramNode() {
         zoomExtents={{ min: 0.33, max: 4 }}
         brushRadius={brush}
         lazyRadius={1}
-        // canvasHeight="50vh"
+        canvasHeight={850}
         // hideGrid={true}
-        canvasWidth={1200}
+        canvasWidth={1900}
       />
 
       <button
