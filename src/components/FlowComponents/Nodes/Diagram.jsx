@@ -3,6 +3,8 @@ import CanvasDraw from "react-canvas-draw";
 // import ColorPicker, { useColor } from "react-color-palette";
 import { useState } from "react";
 import TransitionsModal from "../../ReUsable/Modal";
+import { Button } from "@mui/material";
+import { Box } from "@mui/material";
 function DiagramNode() {
   const [canvas, setBrush] = useState("#FCA5A5");
   const [brush, setThick] = useState(50);
@@ -93,6 +95,16 @@ function DiagramNode() {
           }
         >
           <img src={showimage.getData} alt="" />
+          <Box display="flex" alignItems={"flex-end"} justifyContent="flex-end">
+            <Button
+              variant="contained"
+              onClick={() =>
+                setShowImage((prev) => ({ ...prev, open: false, getData: "" }))
+              }
+            >
+              Close
+            </Button>
+          </Box>
         </TransitionsModal>
       )}
     </div>
