@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import CanvasDraw from "react-canvas-draw";
 
 // import ColorPicker, { useColor } from "react-color-palette";
@@ -22,6 +23,7 @@ function DiagramNode() {
     marginLeft: "50%",
   };
   console.log(style.width);
+  var width = window.innerWidth > 0 ? window.innerWidth : screen.width;
   return (
     <div className="container">
       <Layout>
@@ -38,7 +40,7 @@ function DiagramNode() {
           lazyRadius={1}
           // imgSrc="https://upload.wikimedia.org/wikipedia/commons/a/a1/Nepalese_Mhapuja_Mandala.jpg"
           canvasHeight={850}
-          canvasWidth={1900}
+          canvasWidth={width - 100}
         />
 
         <Button

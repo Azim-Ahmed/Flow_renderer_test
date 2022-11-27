@@ -12,6 +12,7 @@ import { saveCanvas, toJSON } from "../../helpers";
 import { Tooltip } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
+import { useNavigate } from "react-router-dom";
 
 const Layout = ({
   flowImageDownloadRef,
@@ -23,6 +24,7 @@ const Layout = ({
   title,
   noNeed,
 }) => {
+  const navigate = useNavigate();
   return (
     <Box>
       <AppBar position="static">
@@ -65,11 +67,12 @@ const Layout = ({
                 <Tooltip title={`draw on the node`} placement="bottom" arrow>
                   <Button
                     variant="outlined"
-                    onClick={() =>
-                      downloadJSON.length === 0
-                        ? alert("you have no nodes to download")
-                        : saveCanvas(flowImageDownloadRef)
-                    }
+                    onClick={() => navigate("/diagram")}
+                    // onClick={() =>
+                    //   downloadJSON.length === 0
+                    //     ? alert("you have no nodes to download")
+                    //     : saveCanvas(flowImageDownloadRef)
+                    // }
                     color="inherit"
                   >
                     <EditIcon />
