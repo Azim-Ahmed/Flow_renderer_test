@@ -11,6 +11,7 @@ import DataObjectIcon from "@mui/icons-material/DataObject";
 import { saveCanvas, toJSON } from "../../helpers";
 import { Tooltip } from "@mui/material";
 import { NavLink } from "react-router-dom";
+import EditIcon from "@mui/icons-material/Edit";
 
 const Layout = ({
   flowImageDownloadRef,
@@ -60,7 +61,22 @@ const Layout = ({
                   </Button>
                 </Tooltip>
               </Box>
-              {/* <Box mr="8px">
+              <Box mr="8px">
+                <Tooltip title={`Drag on the node`} placement="bottom" arrow>
+                  <Button
+                    variant="outlined"
+                    onClick={() =>
+                      downloadJSON.length === 0
+                        ? alert("you have no nodes to download")
+                        : saveCanvas(flowImageDownloadRef)
+                    }
+                    color="inherit"
+                  >
+                    <EditIcon />
+                  </Button>
+                </Tooltip>
+              </Box>
+              <Box mr="8px">
                 <Tooltip title={`Go to mapbox`} placement="bottom" arrow>
                   <NavLink
                     style={{
@@ -73,7 +89,7 @@ const Layout = ({
                     MapBox
                   </NavLink>
                 </Tooltip>
-              </Box> */}
+              </Box>
               <Box mr="8px">
                 <Tooltip title={`Download as json`} placement="bottom" arrow>
                   <Button
