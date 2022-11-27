@@ -6,6 +6,10 @@ function DiagramNode() {
   const [canvas, setBrush] = useState("#FCA5A5");
   const [brush, setThick] = useState(50);
   const [modify, setModify] = useState("");
+  const [image, showImage] = useState({
+    open: false,
+    getData: "",
+  });
   // const [color, setColor] = useColor("hex", "#121212");
   // const c = "#FCA5A5";
   const style = {
@@ -26,8 +30,8 @@ function DiagramNode() {
         zoomExtents={{ min: 0.33, max: 4 }}
         brushRadius={brush}
         lazyRadius={1}
+        imgSrc="https://upload.wikimedia.org/wikipedia/commons/a/a1/Nepalese_Mhapuja_Mandala.jpg"
         canvasHeight={850}
-        // hideGrid={true}
         canvasWidth={1900}
       />
 
@@ -37,6 +41,17 @@ function DiagramNode() {
         }}
       >
         UNDO
+      </button>
+      <button
+        onClick={() =>
+          showImage((prev) => ({
+            ...prev,
+            open: true,
+            getData: modify.getDataURL(),
+          }))
+        }
+      >
+        Show
       </button>
       <button
         onClick={() => {
@@ -52,7 +67,6 @@ function DiagramNode() {
         type="color"
         value={canvas}
         onChange={(event) => {
-          console.log(event.target.value);
           setBrush(event.target.value);
         }}
       />
@@ -69,6 +83,7 @@ function DiagramNode() {
           setThick(event.target.value);
         }}
       />
+      {image.open && <img src={image.getData} alt="" />}
     </div>
   );
 }
