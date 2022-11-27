@@ -2,11 +2,12 @@ import CanvasDraw from "react-canvas-draw";
 
 // import ColorPicker, { useColor } from "react-color-palette";
 import { useState } from "react";
+import TransitionsModal from "../../ReUsable/Modal";
 function DiagramNode() {
   const [canvas, setBrush] = useState("#FCA5A5");
   const [brush, setThick] = useState(50);
   const [modify, setModify] = useState("");
-  const [image, showImage] = useState({
+  const [showimage, setShowImage] = useState({
     open: false,
     getData: "",
   });
@@ -44,7 +45,7 @@ function DiagramNode() {
       </button>
       <button
         onClick={() =>
-          showImage((prev) => ({
+          setShowImage((prev) => ({
             ...prev,
             open: true,
             getData: modify.getDataURL(),
@@ -83,7 +84,17 @@ function DiagramNode() {
           setThick(event.target.value);
         }}
       />
-      {image.open && <img src={image.getData} alt="" />}
+
+      {showimage.open && (
+        <TransitionsModal
+          open={showimage.open}
+          handleClose={() =>
+            setShowImage((prev) => ({ ...prev, open: false, getData: "" }))
+          }
+        >
+          <img src={showimage.getData} alt="" />
+        </TransitionsModal>
+      )}
     </div>
   );
 }
