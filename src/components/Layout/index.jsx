@@ -62,7 +62,7 @@ const Layout = ({
                 </Tooltip>
               </Box>
               <Box mr="8px">
-                <Tooltip title={`Drag on the node`} placement="bottom" arrow>
+                <Tooltip title={`draw on the node`} placement="bottom" arrow>
                   <Button
                     variant="outlined"
                     onClick={() =>

@@ -28,7 +28,7 @@ import NodeB from "../components/FlowComponents/Nodes/NodeB";
 import NodeC from "../components/FlowComponents/Nodes/NodeC";
 import { edgeArrowId } from "../helpers";
 import { flowInitial } from "../assets/FlowData/Data";
-import DiagramNode from "../components/FlowComponents/Nodes/Diagram";
+import Text from "../components/FlowComponents/Nodes/Text";
 const FlowCanvas = () => {
   const reactFlowWrapper = useRef(null);
   const flowImageDownloadRef = useRef();
@@ -37,6 +37,7 @@ const FlowCanvas = () => {
       nodeA: NodeA,
       nodeB: NodeB,
       nodeC: NodeC,
+      nodeD: Text,
     }),
     []
   );
@@ -102,9 +103,7 @@ const FlowCanvas = () => {
               strokeWidth: 2,
               stroke: "#FF0072",
             },
-            // markerEnd: {
-            //   type: MarkerType.ArrowClosed,
-            // },
+
             markerEnd: {
               type: MarkerType.ArrowClosed,
               width: 20,
@@ -123,30 +122,6 @@ const FlowCanvas = () => {
     event.preventDefault();
     event.dataTransfer.dropEffect = "move";
   }, []);
-
-  // useEffect(() => {
-  //   setNodes((nds) =>
-  //     nds.map((node) => {
-  //       let x = 0;
-  //       let y = 0;
-  //       // if (node.id === parent) {
-  //       //   x = node.position.x;
-  //       //   y = node.position.y;
-  //       //   console.log("parent: " + node.id + " " + parent);
-  //       //   console.log("parent posx: " + x);
-  //       //   console.log("parent posy: " + y);
-  //       // }
-  //       // else if (node.selected === true && node.type !== "group") {
-  //       //   node.parentNode = parent;
-  //       //   node.position.x = x;
-  //       //   node.position.y = y;
-  //       //   node.extent = "parent";
-  //       // }
-  //       return node;
-  //     })
-  //   );
-  // }, [parent, setNodes]);
-
   useEffect(() => {
     setNodes((nds) =>
       nds.map((node) => {
@@ -166,24 +141,6 @@ const FlowCanvas = () => {
       })
     );
   }, [nodeName, nodeBg, sizeX, sizeY, setNodes]);
-
-  // useEffect(() => {
-  //   setNodes((nds) =>
-  //     nds.map((node) => {
-  //       if (node.selected === true) {
-  //         console.log("selected found");
-  //         // when you update a simple type you can just update the value
-  //         node.type = "group";
-
-  //         setType(node.type);
-
-  //         setGroup("");
-  //       }
-  //       console.log("not selected");
-  //       return node;
-  //     })
-  //   );
-  // }, [group, setNodes]);
 
   const onDrop = useCallback(
     (event) => {
@@ -228,6 +185,19 @@ const FlowCanvas = () => {
         setNodes((nds) => nds.concat(newNode));
       }
       if (type === "nodeC") {
+        newNode = {
+          id: `flow_azim_${type}_renderer_${uuidv4()}`,
+          type,
+          position,
+          data: { label: `${label}` },
+          style: {
+            borderRadius: 6,
+            borderColor: "#1111",
+          },
+        };
+        setNodes((nds) => nds.concat(newNode));
+      }
+      if (type === "nodeD") {
         newNode = {
           id: `flow_azim_${type}_renderer_${uuidv4()}`,
           type,
