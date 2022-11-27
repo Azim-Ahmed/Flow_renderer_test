@@ -19,23 +19,19 @@ function DiagramNode() {
       <CanvasDraw
         hideInterface
         // hideGrid
-        enablePanAndZoom
+        enablePanAndZoom={true}
         onChange={(e) => console.log(e)}
         ref={(canvasDraw) => setModify(canvasDraw)}
-        // brushColor={canvas}
-        // brushRadius={brush}
+        brushColor={canvas}
+        zoomExtents={{ min: 0.33, max: 4 }}
+        brushRadius={brush}
+        lazyRadius={1}
         // canvasHeight="50vh"
         // hideGrid={true}
         canvasWidth={1200}
       />
+
       <button
-        onClick={() => {
-          modify.undo();
-        }}
-      >
-        UNDO
-      </button>
-      {/* <button
         onClick={() => {
           modify.undo();
         }}
@@ -63,7 +59,7 @@ function DiagramNode() {
 
       <br />
       <label>Brush Thickness</label>
-      <div className="thickness" style={style}></div>
+      <div className="thickness" style={{ ...style, marginLeft: "40px" }}></div>
       <input
         min="2"
         max="50"
@@ -72,7 +68,7 @@ function DiagramNode() {
           console.log(event.target.value);
           setThick(event.target.value);
         }}
-      /> */}
+      />
     </div>
   );
 }
