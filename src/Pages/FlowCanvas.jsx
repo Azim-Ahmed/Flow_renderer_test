@@ -28,6 +28,7 @@ import NodeB from "../components/FlowComponents/Nodes/NodeB";
 import NodeC from "../components/FlowComponents/Nodes/NodeC";
 import { edgeArrowId } from "../helpers";
 import { flowInitial } from "../assets/FlowData/Data";
+import DiagramNode from "../components/FlowComponents/Nodes/Diagram";
 const FlowCanvas = () => {
   const reactFlowWrapper = useRef(null);
   const flowImageDownloadRef = useRef();
