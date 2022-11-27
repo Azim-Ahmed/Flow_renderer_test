@@ -1,5 +1,4 @@
 import { ReactFlowProvider } from "react-flow-renderer";
-import { ThemeProvider } from "@mui/system";
 import { FlowCanvas } from "../Pages";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import Home from "../Pages/Home";
@@ -7,6 +6,7 @@ import theme from "../assets/Theme";
 import MapBox from "../Pages/Mapbox";
 // import AliveMap from "../Pages/AliveMap";
 import NewMap from "../Pages/NewMap";
+import { ThemeProvider } from "@mui/material";
 
 const App = () => {
   return (

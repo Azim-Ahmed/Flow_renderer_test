@@ -1,7 +1,7 @@
 // import "../index";
 // import { useState } from "react";
 // import FilterItems from "./FlowComponents/FilterItems";
-import { Box } from "@mui/system";
+import { Box } from "@mui/material";
 import { Tooltip } from "@mui/material";
 import { flowData } from "../assets/FlowData";
 
