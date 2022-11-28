@@ -19,7 +19,6 @@
     "mapbox-gl": "^2.9.1",
     "react": "^18.1.0",
     "react-canvas-draw": "^1.2.1",
-    "react-color-palette": "^6.2.0",
     "react-dom": "^18.1.0",
     "react-flow-renderer": "^10.2.2",
     "react-mapbox-gl": "^5.1.1",

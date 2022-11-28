@@ -1,7 +1,5 @@
 /* eslint-disable no-restricted-globals */
 import CanvasDraw from "react-canvas-draw";
-
-// import ColorPicker, { useColor } from "react-color-palette";
 import { useState } from "react";
 import TransitionsModal from "../../ReUsable/Modal";
 import { Button } from "@mui/material";
@@ -15,8 +13,6 @@ function DiagramNode() {
     open: false,
     getData: "",
   });
-  // const [color, setColor] = useColor("hex", "#121212");
-  // const c = "#FCA5A5";
   const style = {
     width: brush + "px",
     background: canvas,
@@ -55,8 +51,6 @@ function DiagramNode() {
             minWidth: "450px",
             textAlign: "center",
             padding: "10px",
-            // display: "flex",
-            // justifyContent: "center",
             boxShadow: "7px 7px 7px 2px gray",
           }}
         >

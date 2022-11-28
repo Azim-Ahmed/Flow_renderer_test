@@ -18,7 +18,6 @@ specifiers:
   postcss: ^8.4.13
   react: ^18.1.0
   react-canvas-draw: ^1.2.1
-  react-color-palette: ^6.2.0
   react-dom: ^18.1.0
   react-flow-renderer: ^10.2.2
   react-mapbox-gl: ^5.1.1
@@ -46,7 +45,6 @@ dependencies:
   mapbox-gl: 2.10.0
   react: 18.2.0
   react-canvas-draw: 1.2.1_react@18.2.0
-  react-color-palette: 6.2.0_react@18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-flow-renderer: 10.3.17_biqbaboplfbrettd7655fr4n2y
   react-mapbox-gl: 5.1.1_kofrfvs2fmmy3huqcxl6n7cfvm
@@ -10225,15 +10223,6 @@ packages:
       prop-types: 15.8.1
       react: 18.2.0
       resize-observer-polyfill: 1.5.1
-    dev: false
-
-  /react-color-palette/6.2.0_react@18.2.0:
-    resolution: {integrity: sha512-9rIboaRJNoeF8aCI2f3J8wgMyhl74SnGmZLDjor3bKf0iDBhP2EBv0/jGmm0hrj6OackGCqtWl5ZvM89XUc3sg==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      react: '>=16.8.0'
-    dependencies:
-      react: 18.2.0
     dev: false
 
   /react-dev-utils/12.0.1_dunuix3aagubcaxghlf2nuxzgy:
