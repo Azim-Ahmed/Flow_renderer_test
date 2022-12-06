@@ -4,11 +4,22 @@ import { v4 as uuidv4 } from "uuid";
 const { Tab, Divider, AddButton } = Chrome
 
 export default function ChromeExample({ showHeader = false }) {
-  const [tabs, setTabs] = useState([])
+  const [tabs, setTabs] = useState([{
+    id: uuidv4(),
+    activeKey:"new",
+    color: "#" + ((1 << 24) * Math.random() | 0).toString(16).padStart(6, "0"),
+    title:"new tab"
+
+  }])
+  const [backgroundNone, setBackgroundNone] = useState({
+    background: false,
+    fullScreen:false
+  })
   const addTabs = () => {
     const newTab = {
       id: uuidv4(),
       color: "#" + ((1 << 24) * Math.random() | 0).toString(16).padStart(6, "0"),
+      title:"new tab"
 
     }
     setTabs(Prev => [...Prev, newTab])
@@ -28,19 +39,23 @@ export default function ChromeExample({ showHeader = false }) {
       <Browser
         type={'chrome'}
         showHeader={showHeader}
-        activeTabKey={'green'}
-        tabEnd={tabEnd}>
+        activeTabKey={'new'}
+        tabEnd={tabEnd}
+        onMinifyClick={() => setBackgroundNone((prev) => ({...prev , background:!prev.background}))}
+        onFullscreenClick={() => setBackgroundNone((prev) => ({...prev , background:!prev.fullScreen}))}
+      >
+
         {
-          tabs.map(item => <Tab key={item.id} imageUrl={''} imageAlt={'green tab image'} title={'Green'}
+            tabs.map(item => <Tab key={item.id} imageUrl={''} imageAlt={'green tab image'} title={item.title}
           onClose={(e) => removeTabs(e, item.id)}
           >
             <div
-              style={{
+                style={{
                 backgroundColor: item.color,
-                height: '100%',
-                width: '100%',
+                height:  backgroundNone.fullScreen  ? "800px" : '100%',
+                width:  backgroundNone.fullScreen  ? "800px" : '100%',
                 opacity: 0.9,
-                display: 'flex',
+                display:backgroundNone.background ? "none": 'flex',
                 justifyContent: 'center',
                 alignItems: 'center'
               }}>
@@ -48,6 +63,7 @@ export default function ChromeExample({ showHeader = false }) {
           </div>
         </Tab>)
         }
+
       </Browser>
     </div>
   )
