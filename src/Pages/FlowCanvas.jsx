@@ -29,6 +29,7 @@ import NodeC from "../components/FlowComponents/Nodes/NodeC";
 import { edgeArrowId } from "../helpers";
 import { flowInitial } from "../assets/FlowData/Data";
 import Text from "../components/FlowComponents/Nodes/Text";
+import ChromeExample from '../components/FlowComponents/Nodes/Browser';
 const FlowCanvas = () => {
   const reactFlowWrapper = useRef(null);
   const flowImageDownloadRef = useRef();
@@ -38,6 +39,7 @@ const FlowCanvas = () => {
       nodeB: NodeB,
       nodeC: NodeC,
       nodeD: Text,
+      nodeE: ChromeExample,
     }),
     []
   );
@@ -198,6 +200,19 @@ const FlowCanvas = () => {
         setNodes((nds) => nds.concat(newNode));
       }
       if (type === "nodeD") {
+        newNode = {
+          id: `flow_azim_${type}_renderer_${uuidv4()}`,
+          type,
+          position,
+          data: { label: `${label}` },
+          style: {
+            borderRadius: 6,
+            borderColor: "#1111",
+          },
+        };
+        setNodes((nds) => nds.concat(newNode));
+      }
+      if (type === "nodeE") {
         newNode = {
           id: `flow_azim_${type}_renderer_${uuidv4()}`,
           type,
