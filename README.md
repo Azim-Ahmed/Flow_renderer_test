@@ -1,4 +1,4 @@
-# Flow chart with React-flow-rendererred
+# Flow chart with React-flow-rendererre
 
 
 ### to run this application you just have to these in your computer ;
