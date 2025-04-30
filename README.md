@@ -3,7 +3,7 @@
 
 ### to run this application you just have to these in your computer ;
 
-### node version : 14.17.0 , yarn version: 1.22.10
+### node version : 14.17.0 , yarn version: 1.22.11
 
 ### mail me to contribute on your project azimaahmed36@gmail.com
 
