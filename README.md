@@ -14,7 +14,7 @@
 ### current implementation, you will find this now
 #### https://deluxe-kangaroo-a130dd.netlify.app/
 
-### https://concept-pipeline-ui.vercel.app
+### https://concept-pipeline-ui.vercel.apps
 
 ### New Version implementation is coming with elkjs or dagree js or d3-hiererchy
 
