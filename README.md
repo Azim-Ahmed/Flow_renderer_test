@@ -4,7 +4,7 @@
 
 ### node version : 14.17.0 , yarn version: 1.22.12
 1
-### mail me to contribute on your project azimaahmed36@gmail.ca,
+### mail me to contribute on your project azimaahmed36@gmail.com,
 
 ### Updated one https://flowdiagram.netlify.app/
 
